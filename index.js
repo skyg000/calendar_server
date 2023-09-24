@@ -4,24 +4,10 @@ const fs = require('fs')
 const cors = require('cors');
 const bodyParser = require('body-parser')
 
-app.use(express())
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-/* const tData = {
-    select : function(){
-        return JSON.parse (fs.readFileSync('./data.json'))
-    },
-    insert : function(nObj){
-        const jsonD = tData.select()
-        const newData = [...jsonD, {id:jsonD.length+1, ...nObj}]
-        fs.writeFileSync('./data.json',JSON.stringify(newData))
-        return newData;
-    },
-    update : function(){},
-    delete : function(){}
-} */
 
 app.get('/abc', function (req, res) { 
     const jsonD = fs.readFileSync('./data.json')
