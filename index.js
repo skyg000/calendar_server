@@ -43,7 +43,8 @@ app.post('/insert', function (req, res) {
 })
 
 app.post('/del', function (req, res) { 
-    fs.writeFileSync('./data.json',JSON.stringify(req.body))
+    let {deldata} = req.body
+    fs.writeFileSync('./data.json',JSON.stringify(deldata))
     let newjson = JSON.parse(fs.readFileSync('./data.json'))
     res.send(newjson);
 })
