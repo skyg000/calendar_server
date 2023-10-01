@@ -36,7 +36,7 @@ app.post('/del', function (req, res) {
 })
 
 
-app.post('/modi', function (req, res) {
+app.delete('/modi', function (req, res) {
     const {todo, id} = req.body;
     console.log(id);
     let allData = JSON.parse(fs.readFileSync('./data.json'));
