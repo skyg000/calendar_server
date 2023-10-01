@@ -29,14 +29,14 @@ app.post('/insert', function (req, res) {
     res.send(newjson);
 })
 
-app.post('/del', function (req, res) { 
+app.delete('/del', function (req, res) { 
     fs.writeFileSync('./data.json',JSON.stringify(req.body))
     let newjson = JSON.parse(fs.readFileSync('./data.json'))
     res.send(newjson);
 })
 
 
-app.delete('/modi', function (req, res) {
+app.post('/modi', function (req, res) {
     const {todo, id} = req.body;
     console.log(id);
     let allData = JSON.parse(fs.readFileSync('./data.json'));
