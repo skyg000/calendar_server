@@ -29,7 +29,7 @@ app.post('/insert', function (req, res) {
     res.send(newjson);
 })
 
-app.delete('/del', function (req, res) { 
+app.post('/del', function (req, res) { 
     fs.writeFileSync('./data.json',JSON.stringify(req.body))
     let newjson = JSON.parse(fs.readFileSync('./data.json'))
     res.send(newjson);
