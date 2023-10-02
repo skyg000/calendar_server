@@ -46,14 +46,14 @@ app.post('/modi', function (req, res) {
     res.send(allData);
 })
 
-/* chat.json */
+/* diary.json */
 app.get('/abcd', function (req, res) { 
-    const jsonD = fs.readFileSync('./chat.json')
+    const jsonD = fs.readFileSync('./diary.json')
     res.send(JSON.parse(jsonD))
 })
 
 app.get('/abcd/:id', function (req, res) { 
-    const jsonD = fs.readFileSync('./chat.json')
+    const jsonD = fs.readFileSync('./diary.json')
     const data = JSON.parse(jsonD)
     const {id} = req.params
     const aaa = data.filter(n=>n.id == id)
@@ -61,7 +61,7 @@ app.get('/abcd/:id', function (req, res) {
 })
 
 app.post('/insert1', function (req, res) { 
-    fs.writeFileSync('./chat.json',JSON.stringify(req.body))
+    fs.writeFileSync('./diary.json',JSON.stringify(req.body))
     res.send('완료');
 })
 
