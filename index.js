@@ -8,6 +8,8 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+app.use(express.json()); // JSON 파싱
+app.use(express.urlencoded({ extended: true })); // URL-encoded 파싱
 
 app.get('/abc', function (req, res) { 
     const jsonD = fs.readFileSync('./data.json')
@@ -30,7 +32,8 @@ app.post('/insert', function (req, res) {
 })
 
 app.post('/del', function (req, res) { 
-    fs.writeFileSync('./data.json',JSON.stringify(req.body))
+    const newData = JSON.parse(req.body);
+    fs.writeFileSync('./data.json',JSON.stringify(newData))
     let newjson = JSON.parse(fs.readFileSync('./data.json'))
     res.send(newjson);
 })
