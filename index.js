@@ -63,9 +63,16 @@ app.get('/abcd/:id', function (req, res) {
     res.send(aaa)
 })
 
-app.post('/insert1', function (req, res) { 
+/* app.post('/insert1', function (req, res) { 
     fs.writeFileSync('./diary.json',JSON.stringify(req.body))
     res.send('완료');
+}) */
+
+app.post('/insert1', function (req, res) { 
+    let diaryData = JSON.parse(fs.readFileSync('./diary.json'))
+    fs.writeFileSync('./diary.json',JSON.stringify([...diaryData,{...req.body}]))
+    let newdiaryjson = JSON.parse(fs.readFileSync('./diary.json'))
+    res.send(newdiaryjson);
 })
 
 app.listen(3030)
