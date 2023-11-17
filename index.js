@@ -63,16 +63,22 @@ app.get('/abcd/:id', function (req, res) {
     res.send(aaa)
 })
 
-/* app.post('/insert1', function (req, res) { 
+app.post('/insert1', function (req, res) { 
     fs.writeFileSync('./diary.json',JSON.stringify(req.body))
     res.send('완료');
-}) */
-
-app.post('/insert1', function (req, res) { 
-    let diaryData = JSON.parse(fs.readFileSync('./diary.json'))
-    fs.writeFileSync('./diary.json',JSON.stringify([...diaryData,{...req.body}]))
-    let newdiaryjson = JSON.parse(fs.readFileSync('./diary.json'))
-    res.send(newdiaryjson);
 })
+
+/* app.post('/insert1', function (req, res) { 
+    try{
+        const diaryData = JSON.parse(fs.readFileSync('./diary.json'))
+        const newData = [...diaryData,{...req.body}];
+        fs.writeFileSync('./diary.json',JSON.stringify(newData, null, 2));
+        const newdiaryjson = JSON.parse(fs.readFileSync('./diary.json'))
+        res.send(newdiaryjson);
+    }catch(error){
+        console.error('Error in insert1:', error);
+        res.status(500).send('Isadsadsa');
+    }
+}) */
 
 app.listen(3030)
