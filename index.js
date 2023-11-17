@@ -63,12 +63,12 @@ app.get('/abcd/:id', function (req, res) {
     res.send(aaa)
 })
 
-/* app.post('/insert1', function (req, res) { 
+app.post('/insert1', function (req, res) { 
     fs.writeFileSync('./diary.json',JSON.stringify(req.body))
     res.send('완료');
-}) */
+})
 
-app.post('/insert1', function (req, res) { 
+/* app.post('/insert1', function (req, res) { 
     try{
         const diaryData = JSON.parse(fs.readFileSync('./diary.json'))
         const newData = [...diaryData,{...req.body}];
@@ -79,6 +79,6 @@ app.post('/insert1', function (req, res) {
         console.error('Error in insert1:', error);
         res.status(500).send('Isadsadsa');
     }
-})
+}) */
 
 app.listen(3030)
