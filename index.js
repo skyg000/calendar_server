@@ -34,7 +34,7 @@ app.post('/insert', function (req, res) {
 app.post('/del', function (req, res) { 
     const newData = req.body.data;
     let newjson = JSON.parse(fs.readFileSync('./data.json'))
-    let filter = newjson.filter(item => newData.every(newItem => newItem.id === item.id))
+    let filter = newjson.filter(item => !newData.includes(item.id))
     fs.writeFileSync('./data.json',JSON.stringify(filter))
     res.send(filter);
 })
