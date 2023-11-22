@@ -32,10 +32,11 @@ app.post('/insert', function (req, res) {
 })
 
 app.post('/del', function (req, res) { 
-    const newData = JSON.parse(req.body);
-    fs.writeFileSync('./data.json',JSON.stringify(newData))
+    const newData = req.body;
     let newjson = JSON.parse(fs.readFileSync('./data.json'))
-    res.send(newjson);
+    let filter = newjson.filter(item => !newData.some(newItem => newItem.id === item.id))
+    fs.writeFileSync('./data.json',JSON.stringify(filter))
+    res.send(filter);
 })
 
 
